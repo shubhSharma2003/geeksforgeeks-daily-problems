@@ -1,0 +1,17 @@
+class Solution {
+    public int rowWithMax1s(int arr[][]) {
+        // code here
+        int row = 0;
+        int col = arr[row].length - 1;
+        int id = -1;
+        while (row < arr.length && col >= 0) {
+            if (arr[row][col] == 0) {
+                row++;
+            } else {
+                id = row;
+                col--;
+            }
+        }
+        return id;
+    }
+}
