@@ -1,0 +1,56 @@
+class Solution
+{
+    public boolean isSafe(int x, int y, int n, int[][]mat, ArrayList<ArrayList<Boolean>>visited)
+    {
+        if((x >= 0 && x < n) && (y >= 0 && y < n) && mat[x][y] == 1 && (!visited.get(x).get(y)))
+            return true;
+        return false;
+    }
+    
+    public void solve(int x, int y, int [][]mat, ArrayList<String>arr, int n, ArrayList<ArrayList<Boolean>>visited, String path)
+    {
+        if((x == n-1) && (y == n-1))
+        {
+            arr.add(path);
+            return;
+        }
+        visited.get(x).set(y, true);
+        if(isSafe(x+1, y, n, mat, visited))
+        {
+            solve(x+1, y, mat, arr, n, visited, path+"D");
+        }
+        
+        if(isSafe(x, y - 1, n, mat, visited))
+        {
+            solve(x, y - 1, mat, arr, n, visited, path+"L");
+        }
+        
+        if(isSafe(x, y+1, n, mat, visited))
+        {
+            solve(x, y+1, mat, arr, n, visited, path+"R");
+        }
+        
+        if(isSafe(x-1, y, n, mat, visited))
+        {
+            solve(x-1, y, mat, arr, n, visited, path+"U");
+        }
+        visited.get(x).set(y, false);
+    }
+    
+    public ArrayList<String> findPath(int[][] mat) {
+        int n = mat.length;
+        ArrayList<String> ans = new ArrayList<>();
+        ArrayList<ArrayList<Boolean>> visited = new ArrayList<>(n);
+        String path = "";
+        for(int i = 0; i < n; i++)
+        {
+            ArrayList<Boolean>row = new ArrayList<>(n);
+            for(int j = 0; j < n; j++)
+                row.add(false);
+            visited.add(row);
+        }
+        if(mat[0][0] == 1)
+            solve(0, 0, mat, ans, n, visited, path);
+        return ans;
+    }
+}
