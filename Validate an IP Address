@@ -1,0 +1,45 @@
+class Solution {
+
+    public boolean isValid(String str) {
+        // Write your code here
+        int decCount=0;
+        StringBuilder build=new StringBuilder();
+        for(int i=0;i<str.length();i++){
+            char ch=str.charAt(i);
+            if(ch=='.'){
+                decCount++;
+                String ss=build.toString();
+                if(ss.length()>0){
+                    if(ss.charAt(0)=='0'&&ss.length()>1){
+                        return false;
+                    }
+                    int val=Integer.parseInt(ss);
+                    if(val<0||val>255){
+                        return false;
+                    }
+                }else{
+                    return false;
+                }
+                build.setLength(0);
+            }else{
+                build.append(ch);
+            }
+        }
+        String ss=build.toString();
+        if(ss.length()>0){
+            if(ss.charAt(0)=='0'&&ss.length()>1){
+                return false;
+            }
+            int val=Integer.parseInt(ss);
+            if(val<0||val>255){
+                      return false;
+            }
+        }else{
+            return false;
+        }
+        if(decCount==3){
+            return true;
+        }
+        return false;
+    }
+}
