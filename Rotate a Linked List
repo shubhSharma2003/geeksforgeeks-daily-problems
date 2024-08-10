@@ -1,0 +1,27 @@
+class Solution {
+    int size(Node node){
+        int cnt=0;
+        while(node!=null){
+            node=node.next;
+            cnt++;
+        }
+        return cnt;
+    }
+    
+    public Node rotate(Node head, int k) {
+        if(head.next==null)return head;
+        int s=size(head);
+        k=(s-k)%s;
+        while(k-->0){
+            Node node=head;
+            while(node.next!=null && node.next.next!=null){
+                node=node.next;
+            }
+            node.next.next=head;
+            head=node.next;
+            node.next=null;
+        }
+        
+        return head;
+    }
+}
