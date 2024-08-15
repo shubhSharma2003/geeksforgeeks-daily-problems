@@ -1,0 +1,40 @@
+class Solution {
+    boolean carry = false;
+    public void helper(Node head){
+        if(head.next != null){
+            helper(head.next);
+            if(carry == true)head.data+=1;
+            if(head.data >9){
+                carry = true;
+                head.data = 0;
+                return;
+            }
+            else{
+                carry = false;
+                return;
+            }
+        }
+        else{
+            head.data +=1;
+            if(head.data >9){
+                head.data = 0;
+                carry = true;
+                return;
+            }
+            else{
+                carry = false;
+                return;
+            }
+        }
+    }
+    public Node addOne(Node head) {
+        int flag = head.data;
+        helper(head);
+        if(head.data == 0 && flag == 9){
+            Node newHead = new Node(1);
+            newHead.next = head;
+            return newHead;
+        }
+        else return head;
+    }
+}
