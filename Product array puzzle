@@ -1,0 +1,36 @@
+class Solution {
+    public static long[] productExceptSelf(int nums[]) {
+        // code here
+        long arr[]=new long[nums.length];
+        long res=1;
+        boolean t=true;
+        int count=0;;
+        for(int i=0;i<nums.length;i++){
+           if(nums[i]!=0){
+                res*=nums[i];
+           }else{
+               t=false;
+               count++;
+           }
+           
+        }
+        if(t){
+            for(int i=0;i<nums.length;i++){
+                arr[i]=res/nums[i];
+            }
+        }else{
+            if(count==1){
+                for(int i=0;i<nums.length;i++){
+                    if(nums[i]==0){
+                        arr[i]=res;
+                    }else{
+                        arr[i]=0;
+                    }
+                }
+            }else{
+                Arrays.fill(arr,0);
+            }
+        }
+        return arr;
+    }
+}
