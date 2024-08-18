@@ -1,0 +1,14 @@
+class Solution {
+    public boolean canSplit(int arr[]) {
+        // code here
+        int preSum=0;
+        for(int i:arr) preSum+=i;
+        int currSum=0;
+        for(int i=0; i<arr.length; i++){
+            if(currSum==preSum) return true;
+            currSum+=arr[i];
+            preSum-=arr[i];
+        }
+        return false;
+    }
+}
