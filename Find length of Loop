@@ -1,0 +1,24 @@
+class Solution {
+    // Function to find the length of a loop in the linked list.
+    public int countNodesinLoop(Node head) {
+        // Add your code here.
+        Node curr = head;
+        int count = 0;
+        boolean hasLoop = false;
+        
+        while(curr!= null) {
+            if(curr.data <0) {
+                hasLoop = true;
+                break;
+            }
+            
+            curr.data = -1*(count+1);
+
+//the position of this node is marked as negative of the position
+            count++;
+            curr = curr.next;
+        }
+        
+        return hasLoop?count-Math.abs(curr.data)+1:0;
+    }
+}
