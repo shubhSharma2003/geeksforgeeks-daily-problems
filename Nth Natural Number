@@ -1,0 +1,16 @@
+class Solution
+
+{
+    long findNth(long n)
+
+{
+         String result = "";
+        while(n>0)
+
+{
+            result = (n%9) + result;
+            n/=9;
+        }
+        return Long.valueOf(result);
+    }
+}
