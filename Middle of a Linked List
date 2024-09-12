@@ -1,0 +1,24 @@
+class Solution {
+    /**
+     * This method returns the middle element of a singly linked list.
+     *
+     * @param head The head node of the singly linked list.
+     * @return The data value of the middle node.
+     */
+    int getMiddle(Node head) {
+        // Initialize two pointers, slow and fast, both starting at the head.
+        Node slow = head;
+        Node fast = head;
+        
+        // Traverse the list with two pointers.
+        // Move slow pointer one step at a time.
+        // Move fast pointer two steps at a time.
+        while (fast != null && fast.next != null) {
+            slow = slow.next;       // Move slow pointer one step.
+            fast = fast.next.next;  // Move fast pointer two steps.
+        }
+        
+        // When fast pointer reaches the end, slow pointer will be at the middle.
+        return slow.data;
+    }
+}
