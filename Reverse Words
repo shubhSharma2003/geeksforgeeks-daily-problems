@@ -1,0 +1,9 @@
+class Solution {
+    // Function to reverse words in a given string.
+    String reverseWords(String str) {
+        // code here
+        String[] t = str.split("\\.");
+        Collections.reverse(Arrays.asList(t));
+        return String.join(".",t);
+    }
+}
