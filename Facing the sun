@@ -1,0 +1,17 @@
+class Solution {
+    // Returns count of buildings that can see sunlight
+    public int countBuildings(int[] height) {
+        // The first building can always see sunlight
+        int count = 1;
+        int tallest = height[0];  // Tallest building so far is the first one
+        
+        // Start from the second building and check each one
+        for(int i = 1; i < height.length; i++){
+            if(height[i] > tallest) {
+                count++;  // This building can see sunlight
+                tallest = height[i];  // Update the tallest building
+            }
+        }
+        return count;
+    }
+}
