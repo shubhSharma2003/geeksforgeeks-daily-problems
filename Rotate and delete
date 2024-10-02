@@ -1,0 +1,29 @@
+class Solution {
+    public static int rotateDelete(ArrayList<Integer> arr) {
+        int k = 1; // Start with the first operation
+
+        while (arr.size() > 1) {
+            // Step 1: Rotate the array to the right by 1
+            rotateRight(arr);
+
+            // Step 2: Calculate the index to delete
+            int indexToRemove = arr.size() - k;
+            
+            // Remove the element at the calculated index
+            if (indexToRemove >= 0) {
+                arr.remove(indexToRemove);
+            } else {
+                arr.remove(0); // If out of bounds, remove the first element (as per given explanation)
+            }
+
+            k++; // Increment the operation number for the next iteration
+        }
+
+        return arr.get(0); // The last remaining element
+    }
+
+    public static void rotateRight(ArrayList<Integer> arr) {
+        // Rotate the array to the right by 1
+        int lastElement = arr.remove(arr.size() - 1);
+        arr.add(0, lastElement);
+    }
